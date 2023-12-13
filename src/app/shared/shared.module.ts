@@ -1,8 +1,10 @@
-import { CoreModule } from '@abp/ng.core';
+import { CoreModule, ListService } from '@abp/ng.core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateNativeAdapter, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [],
@@ -10,14 +12,19 @@ import { NgxValidateCoreModule } from '@ngx-validate/core';
     CoreModule,
     ThemeSharedModule,
     NgbDropdownModule,
-    NgxValidateCoreModule
+    NgxValidateCoreModule,
+    NgbDatepickerModule
   ],
   exports: [
     CoreModule,
     ThemeSharedModule,
     NgbDropdownModule,
-    NgxValidateCoreModule
+    NgxValidateCoreModule,
+    NgbDatepickerModule
   ],
-  providers: []
+  providers: [
+    ListService,
+    { provide: NgbDateAdapter, useClass: NgbDateNativeAdapter }
+  ]
 })
-export class SharedModule {}
+export class SharedModule { }
